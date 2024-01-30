@@ -59,7 +59,12 @@ export function handleDoubleClick(
   if (disabled) return;
   if (doubleClickStopEventTimer) return;
 
-  if (mode === "reset") {
+  if (
+    mode === "reset" ||
+    (mode === "zoomInReset" &&
+      contextInstance.transformState.previousScale <
+        contextInstance.transformState.scale)
+  ) {
     return handleDoubleClickResetMode(contextInstance, event);
   }
 
